@@ -1,17 +1,27 @@
 package com.BikkadIT.PhoneBookApp.Service;
 
-
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.BikkadIT.PhoneBookApp.Model.Contact;
+import com.BikkadIT.PhoneBookApp.Repository.ContactRepository;
 
-@RestController
+@Service
 public class ContactServiceImpl implements ContactServiceI{
 
+	@Autowired
+	private ContactRepository contactRepository;
+	
 	@Override
 	public boolean saveContact(Contact contact) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Contact save = contactRepository.save(contact);
+		
+		if(save !=null) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 
 }
